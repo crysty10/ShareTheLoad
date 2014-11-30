@@ -62,7 +62,7 @@
         <nav id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li>
-                    <a href="#">My Account</a>
+                    <a href="/Pages/MyAccount.aspx">My Account</a>
                 </li>
                 <li>
                     <a href="#">My Requests</a>

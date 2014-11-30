@@ -631,28 +631,7 @@ public partial class Product : INotifyPropertyChanging, INotifyPropertyChanged
 		this.SendPropertyChanging();
 		entity.Product = null;
 	}
-
-    public void save()
-    {
-        DataClassesDataContext dc = new DataClassesDataContext();
-        dc.Products.InsertOnSubmit(this);
-        dc.SubmitChanges();
-    }
-
-    public static Product getById(int id)
-    {
-        DataClassesDataContext dc = new DataClassesDataContext();
-        var product = dc.Products.Single(u => u.ID == id);
-        return product;
-    }
-
-    public static List<Product> getAll()
-    {
-        DataClassesDataContext dc = new DataClassesDataContext();
-        IEnumerable<Product> enume = from p in dc.Products select p;
-
-        return enume.ToList();
-    }
+    
 }
 
 [global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Request")]
