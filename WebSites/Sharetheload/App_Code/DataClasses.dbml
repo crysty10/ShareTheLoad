@@ -16,27 +16,14 @@
       <Association Name="Address_UserAccount" Member="UserAccounts" ThisKey="ID" OtherKey="AddressID" Type="UserAccount" />
     </Type>
   </Table>
-  <Table Name="dbo.UserAccount" Member="UserAccounts">
-    <Type Name="UserAccount">
-      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="FirstName" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="LastName" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="Email" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="Password" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="Phone" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
-      <Column Name="AddressID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="UserAccount_Suscription" Member="Suscriptions" ThisKey="UserID" OtherKey="UserID" Type="Suscription" />
-      <Association Name="UserAccount_Request" Member="Requests" ThisKey="UserID" OtherKey="UserID" Type="Request" />
-      <Association Name="Address_UserAccount" Member="Address" ThisKey="AddressID" OtherKey="ID" Type="Address" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Suscription" Member="Suscriptions">
-    <Type Name="Suscription">
+  <Table Name="dbo.Product" Member="Products">
+    <Type Name="Product">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="RequestID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="UserAccount_Suscription" Member="UserAccount" ThisKey="UserID" OtherKey="UserID" Type="UserAccount" IsForeignKey="true" />
-      <Association Name="Request_Suscription" Member="Request" ThisKey="RequestID" OtherKey="ID" Type="Request" IsForeignKey="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Category" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="Product_Request" Member="Requests" ThisKey="ID" OtherKey="ProductID" Type="Request" />
     </Type>
   </Table>
   <Table Name="dbo.Request" Member="Requests">
@@ -55,18 +42,31 @@
       <Column Name="Street" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="Status" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
       <Association Name="Request_Suscription" Member="Suscriptions" ThisKey="ID" OtherKey="RequestID" Type="Suscription" />
-      <Association Name="UserAccount_Request" Member="UserAccount" ThisKey="UserID" OtherKey="UserID" Type="UserAccount" IsForeignKey="true" />
       <Association Name="Product_Request" Member="Product" ThisKey="ProductID" OtherKey="ID" Type="Product" IsForeignKey="true" />
+      <Association Name="UserAccount_Request" Member="UserAccount" ThisKey="UserID" OtherKey="UserID" Type="UserAccount" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Product" Member="Products">
-    <Type Name="Product">
+  <Table Name="dbo.Suscription" Member="Suscriptions">
+    <Type Name="Suscription">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="Category" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="Price" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Association Name="Product_Request" Member="Requests" ThisKey="ID" OtherKey="ProductID" Type="Request" />
+      <Column Name="RequestID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Request_Suscription" Member="Request" ThisKey="RequestID" OtherKey="ID" Type="Request" IsForeignKey="true" />
+      <Association Name="UserAccount_Suscription" Member="UserAccount" ThisKey="UserID" OtherKey="UserID" Type="UserAccount" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserAccount" Member="UserAccounts">
+    <Type Name="UserAccount">
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Phone" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="AddressID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="UserAccount_Request" Member="Requests" ThisKey="UserID" OtherKey="UserID" Type="Request" />
+      <Association Name="UserAccount_Suscription" Member="Suscriptions" ThisKey="UserID" OtherKey="UserID" Type="Suscription" />
+      <Association Name="Address_UserAccount" Member="Address" ThisKey="AddressID" OtherKey="ID" Type="Address" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
