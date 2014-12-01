@@ -65,10 +65,10 @@
                     <a href="/Pages/MyAccount.aspx">My Account</a>
                 </li>
                 <li>
-                    <a href="#">My Requests</a>
+                    <a href="/Pages/MyRequests.aspx">My Requests</a>
                 </li>
                 <li>
-                    <a href="#">Followed Requests</a>
+                    <a href="/Pages/FallowedRequests.aspx">Followed Requests</a>
                 </li>
                 <li>
                     <a href="#">_______________________________________</a>
