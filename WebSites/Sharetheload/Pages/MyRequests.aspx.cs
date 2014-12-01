@@ -19,23 +19,15 @@ public partial class Pages_MyRequests : System.Web.UI.Page
     private void InitializeFields()
     {
         DataClassesDataContext dc = new DataClassesDataContext();
-
-        //Request req = RequestWrapper.getById(1);
-
-        List<Request> allRequests = RequestWrapper.getAllRequests(3);
-        int rows = allRequests.Count;
-
-
+        List<Request> allRequests = RequestWrapper.getAllRequests(5);
         table.Controls.Clear();
-        for (int i = 0; i < rows; i++)
-        {
-            TableRow rowNew = new TableRow();
-            table.Controls.Add(rowNew);
-
-            TableCell cellNew = new TableCell();
-            Label lblNew = new Label();
             foreach (Request req in allRequests)
             {
+                TableRow rowNew = new TableRow();
+                table.Controls.Add(rowNew);
+
+                TableCell cellNew = new TableCell();
+                Label lblNew = new Label();
                 lblNew.Text = req.Title + " " + req.StartDate + " " + req.EndDate + " "
                                     + req.MinUsers + " " + req.MaxUsers + " " + req.City + " "
                                     + req.State + " " + req.Sector + " " + req.Street + " "
@@ -44,6 +36,5 @@ public partial class Pages_MyRequests : System.Web.UI.Page
                 cellNew.Controls.Add(lblNew);
                 rowNew.Controls.Add(cellNew);
             }
-        }
     }
 }
