@@ -53,11 +53,27 @@ public class RequestWrapper : Request
         return req;
     }
 
+    public static List<Request> getAllRequests(int id)
+    {
+        DataClassesDataContext dc = new DataClassesDataContext();
+        IEnumerable<Request> enume = from p in dc.Requests 
+                                         where p.UserID == id 
+                                         select p;
+
+        return enume.ToList();
+    }
+
     public static List<Request> getAll()
     {
         DataClassesDataContext dc = new DataClassesDataContext();
-        IEnumerable<Request> enume = from p in dc.Requests select p;
-
-        return enume.ToList();
+        var products = from p in dc.Requests 
+                       select p;
+        /*List<Request> requests = new List<Request>();
+        foreach (Request name in products)
+        {
+            requests.Add(name);   
+        }
+        return requests;*/
+        return products.ToList();
     }
 }
